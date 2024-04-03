@@ -846,7 +846,45 @@ export default defineConfig({
 ## Git
 Το τελευταίο βασικό κομμάτι της εφαρμογής, είναι ένα σύστημα ελέγχου έκδοσης - _version control system_
 
+### Αρχικοποίηση του `git repository`
+```bash
+git init
+```
 
-## Template
+### `stage` τις αλλαγές
+```bash
+git add .
+```
+
+### `commit` τις αλλαγές
+```bash
+git commit -m "first commit"
+```
+
+### Δημοσίευση στο _GitLab_
+1. Ζητάς να σου φτιάξουν `Group` στο GitLab με το όνομα της εφαρμογής, πχ `mobics-project` και να σου δώσουν το σύνδεσμο
+
+2. Στον σύνδεσμο, πατάς `New Project` -> `Create Blank Project`
+
+3. Συμπληρώνεις το όνομα του project όπως ονόμασες και την εφαρμογή στην αρχή, πχ `mobics-project-web`
+
+4. **ΠΡΟΣΟΧΗ**: πριν πατήσεις το `Create Project`, πρέπει να **ΑΦΑΙΡΕΣΕΙΣ** την επιλογή `Initialize repository with a README`
+
+5. Προχώρησε με το `Create Project`
+
+6. Ακολουθάς τις οδηγίες `Push an existing Git repository` που βρίσκονται στο κάτω μέρος της σελίδας
 
 ## Deployment
+Το τελευταίο βήμα είναι να ανεβάσεις την εφαρμογή στο διαδίκτυο - deployment
+
+Αυτό κανονικά γίνεται σε έναν _server_. Για τον σκοπό του οδηγού όμως, θα χρησιμοποιήσουμε την υπηρεσία [Vercel](https://vercel.com/home), στην οποία μπορείς πολύ εύκολα και γρήγορα να κάνεις _deploy_ την εφαρμογή σου μέσω του repository στο _GitLab_
+
+- Κάνεις σύνδεση στο vercel και πατάς `Continue with GitLab`
+
+- `Add New` -> Project
+
+- Επιλέγεις το Repository που δημιούργησες
+
+- Πατάς deploy
+
+## Template
