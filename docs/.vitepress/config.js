@@ -79,4 +79,5 @@ export default {
       provider: "local",
     },
   },
+  ignoreDeadLinks: true
 };
