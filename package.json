@@ -1,0 +1,17 @@
+{
+  "name": "mobics-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:build": "vitepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.0.1"
+  }
+}
