@@ -2,7 +2,8 @@ export default {
   title: "Mobics Docs",
   themeConfig: {
     nav: [
-      { text: "Οδηγός", link: "/guide/", activeMatch: "/guide/" },
+      { text: "Οδηγός Web", link: "/guide/", activeMatch: "/guide/" },
+      { text: "Πόροι", link: "/resources/" },
       { text: "Εκπαίδευση", link: "/training/" },
     ],
     sidebar: {
@@ -32,7 +33,7 @@ export default {
           ],
         },
         {
-          text: "Βέλτιστες Πρακτικές",
+          text: "Πρακτικές Συνέπειας",
           collapsed: false,
           items: [
             { text: "Βουέ Βουέ", link: "/guide/bestPractices/" },
@@ -40,25 +41,26 @@ export default {
             { text: "UX", link: "/guide/bestPractices/" },
           ],
         },
+      ],
+      "/resources/": [
+        { text: "Εισαγωγή", link: "/resources/" },
         {
-          text: "Utilities",
+          text: "Εργαλεία",
           collapsed: false,
           items: [
             { text: "VSCode", link: "/guide/utilities/vscode" },
             { text: "Vue Dev Tools", link: "/guide/utilities/vueDevTools" },
-            { text: "Vue Use", link: "/guide/utilities/vueUse" },
             { text: "Loom", link: "/guide/utilities/loom" },
             { text: "Notion", link: "/guide/utilities/notion" },
             { text: "Click Up", link: "/guide/utilities/clickUp" },
-            { text: "Vitepress", link: "/guide/utilities/vitepress" },
           ],
         },
         {
-          text: "Resources",
+          text: "Βιβλιοθήκες",
           collapsed: false,
           items: [
-            { text: "", link: "/guide/resources/" },
-            { text: "", link: "/guide/resources/" },
+            { text: "Vue Use", link: "/guide/utilities/vueUse" },
+            { text: "Vitepress", link: "/guide/utilities/vitepress" },
           ],
         },
       ],
