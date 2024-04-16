@@ -3,7 +3,7 @@ export default {
   themeConfig: {
     nav: [
       { text: "Οδηγός Web", link: "/guide/", activeMatch: "/guide/" },
-      { text: "Πόροι", link: "/resources/" },
+      // { text: "Πόροι", link: "/resources/" },
       { text: "Εκπαίδευση", link: "/training/" },
     ],
     sidebar: {
@@ -66,13 +66,14 @@ export default {
       ],
       "/training/": [
         { text: "Εισαγωγή", link: "/training/" },
+        { text: "Εφαρμογή Node", link: "/training/nodeApp" },
         {
-          text: "Νέα Εφαρμογή",
+          text: "Βασικές Έννοιες",
           collapsed: false,
           items: [
-            { text: "Εισαγωγή", link: "" },
-            { text: "Chapter 1", link: "" },
-            { text: "Chapter 2", link: "" },
+            { text: "Αντιδραστικότητα - Reactivity", link: "/training/createApp" },
+            // { text: "Chapter 1", link: "" },
+            // { text: "Chapter 2", link: "" },
           ],
         },
       ],
