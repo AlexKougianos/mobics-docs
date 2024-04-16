@@ -881,10 +881,20 @@ git commit -m "first commit"
 
 - Κάνεις σύνδεση στο vercel και πατάς `Continue with GitLab`
 
-- `Add New` -> Project
+- `Add New` -> `Project`
 
 - Επιλέγεις το Repository που δημιούργησες
 
 - Πατάς deploy
 
 ## Template
+
+Φτάνοντας στο τέλος του οδηγού, να πούμε πως υπάρχει ένα έτοιμο template με όλα τα προηγούμενα βήματα ανεβασμένο στο παρακάτω GitLab repository - εκτός της δημοσίευσης στο gitlab και το deployment, καθώς για κάθε project θα είναι διαφορετικά
+
+[https://github.com/AlexKougianos/vue3-vuetify-base-template](https://github.com/AlexKougianos/vue3-vuetify-base-template)
+
+Μπορείς να χρησιμοποιήσεις το template ακολουθώντας τις οδηγίες στο `README`
+
+:::tip 💡
+Προτείνεται να ακολουθήσεις την διαδικασία τις πρώτες φορές μέχρι να τη μάθεις και μετά να χρησιμοποιήσεις το template
+:::
