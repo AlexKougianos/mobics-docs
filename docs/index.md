@@ -10,5 +10,5 @@ hero:
       link: /guide/
     - theme: alt
       text: Εκπαίδευση
-      link: /docs/training
+      link: /training/
 ---
