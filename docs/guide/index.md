@@ -27,7 +27,7 @@ outline: [2, 3]
 
 - [Greek - Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-greek): Ορθογραφικός έλεγχος για ελληνικά
 
-Πέρα από αυτές, υπάρχουν πολλές ακόμα, καθώς και ρυθμίσεις που κάνουν την προγραμματιστική εμπειρία στο vscode πολύ ευχάριστη. Δες περισσότερα [εδώ](/guide/utilities/vscode)
+Πέρα από αυτές, υπάρχουν πολλές ακόμα, καθώς και ρυθμίσεις που κάνουν την προγραμματιστική εμπειρία στο vscode πολύ ευχάριστη. Δες περισσότερα [εδώ](/resources/vscode)
 
 ### Node.js
 

@@ -18,7 +18,7 @@
 
 ### Προτεινόμενες
 
-#### Ταχύτητα και πλοήγηση κώδικα
+#### _Ταχύτητα και πλοήγηση κώδικα_
 
 - [Vue VSCode Snippets](https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets)
 
@@ -42,7 +42,7 @@
 
 - [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense): Αυτόματη συμπλήρωση ονομάτων αρχείων
 
-#### Βοηθητικά εργαλεία
+#### _Βοηθητικά εργαλεία_
 
 - [GitLense](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Βοηθητικό εργαλείο για ενέργειες σχετικά με το GIT
 

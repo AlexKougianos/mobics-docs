@@ -3,8 +3,8 @@ export default {
   themeConfig: {
     nav: [
       { text: "Οδηγός Web", link: "/guide/", activeMatch: "/guide/" },
-      // { text: "Πόροι", link: "/resources/" },
-      { text: "Εκπαίδευση", link: "/training/" },
+      { text: "Εκπαίδευση", link: "/training/", activeMatch: "/training/" },
+      { text: "Πόροι Αναφοράς", link: "/resources/", activeMatch: "/resources/" },
     ],
     sidebar: {
       "/guide/": [
@@ -42,28 +42,6 @@ export default {
           ],
         },
       ],
-      "/resources/": [
-        { text: "Εισαγωγή", link: "/resources/" },
-        {
-          text: "Εργαλεία",
-          collapsed: false,
-          items: [
-            { text: "VSCode", link: "/guide/utilities/vscode" },
-            { text: "Vue Dev Tools", link: "/guide/utilities/vueDevTools" },
-            { text: "Loom", link: "/guide/utilities/loom" },
-            { text: "Notion", link: "/guide/utilities/notion" },
-            { text: "Click Up", link: "/guide/utilities/clickUp" },
-          ],
-        },
-        {
-          text: "Βιβλιοθήκες",
-          collapsed: false,
-          items: [
-            { text: "Vue Use", link: "/guide/utilities/vueUse" },
-            { text: "Vitepress", link: "/guide/utilities/vitepress" },
-          ],
-        },
-      ],
       "/training/": [
         { text: "Εισαγωγή", link: "/training/" },
         { text: "Εφαρμογή Node", link: "/training/nodeApp" },
@@ -74,6 +52,29 @@ export default {
             { text: "Αντιδραστικότητα - Reactivity", link: "/training/createApp" },
             // { text: "Chapter 1", link: "" },
             // { text: "Chapter 2", link: "" },
+          ],
+        },
+      ],
+      "/resources/": [
+        { text: "Εισαγωγή", link: "/resources/" },
+        {
+          text: "Εργαλεία",
+          collapsed: false,
+          items: [
+            { text: "VSCode", link: "/resources/vscode" },
+            { text: "Vue Dev Tools", link: "/resources/vueDevTools" },
+            { text: "Loom", link: "/resources/loom" },
+            { text: "Notion", link: "/resources/notion" },
+            { text: "Click Up", link: "/resources/clickUp" },
+          ],
+        },
+        {
+          text: "Βιβλιοθήκες",
+          collapsed: false,
+          items: [
+            { text: "Vue Use", link: "/resources/vueUse" },
+            { text: "Leaflet", link: "/resources/leaflet" },
+            { text: "Vitepress", link: "/resources/vitepress" },
           ],
         },
       ],
