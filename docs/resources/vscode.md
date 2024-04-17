@@ -18,7 +18,7 @@
 
 ### Προτεινόμενες
 
-#### _Ταχύτητα και πλοήγηση κώδικα_
+**Ταχύτητα και πλοήγηση κώδικα**
 
 - [Vue VSCode Snippets](https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets)
 
@@ -30,7 +30,7 @@
 
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag): Αυτόματη αλλαγή των _HTML tags_
 
-- [Camel Case Navigation](https://marketplace.visualstudio.com/items?itemName=maptz.camelcasenavigation): Γρήγορη πλοήγηση με `Ctrl` + βελάκια
+- [Camel Case Navigation](https://marketplace.visualstudio.com/items?itemName=maptz.camelcasenavigation): Γρήγορη πλοήγηση με `Ctrl` + `⬅` / `➡`
 
 - [Multiple cursor case preserve](https://marketplace.visualstudio.com/items?itemName=Cardinal90.multi-cursor-case-preserve)
 
@@ -42,7 +42,7 @@
 
 - [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense): Αυτόματη συμπλήρωση ονομάτων αρχείων
 
-#### _Βοηθητικά εργαλεία_
+**Βοηθητικά εργαλεία**
 
 - [GitLense](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Βοηθητικό εργαλείο για ενέργειες σχετικά με το GIT
 
@@ -84,7 +84,7 @@
 ```JSON
 // User Settings
 {
-    ...
+    // ...
 
     // enable auto save and format on save
     "files.autoSave": "afterDelay",
@@ -199,11 +199,11 @@
 
 - Αναζήτηση στον ανοιγμένο φάκελο - _workspace_ - `Ctrl` + `Shift` + `f`
 
-- Μετακίνηση γραμμής `Alt` + `⬆️` / `⬇️`
+- Μετακίνηση γραμμής `Alt` + `⬆` / `⬇`
 
 - Πολλαπλοί κέρσορες `Alt` + `left click`
 
-- Πολλαπλοί κέρσορες στις γειτονικές γραμμές `Ctrl` + `Alt` + `⬆️` / `⬇️`
+- Πολλαπλοί κέρσορες στις γειτονικές γραμμές `Ctrl` + `Alt` + `⬆` / `⬇`
 
 - Επιλογή λέξης που βρίσκεται ο κέρσορας `Ctrl` + `d`. Πατάς το ίδιο για επιλογή επόμενης ίδιας λέξης
 
