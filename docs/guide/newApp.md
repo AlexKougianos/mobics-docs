@@ -290,7 +290,7 @@ export const usePostsStore = defineStore("posts", () => {
 </script>
 ```
 
-2. Εμφάνισε τους τίτλους των posts χρησιμοποιώντας το `v-card` component του vuetify και το `v-for` _directive_ της Vue
+2. Εμφάνισε τους τίτλους των posts χρησιμοποιώντας το [`v-card` component](https://vuetifyjs.com/en/components/cards/) του vuetify και το `v-for` _directive_ της Vue
 
 ```html {5-13}
 <!-- ~/src/pages/PostsPage.vue -->

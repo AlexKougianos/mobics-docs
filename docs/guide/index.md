@@ -13,15 +13,21 @@ outline: [2, 3]
 Για αρχή, χρειαζόμαστε ένα εργαλείο για να γράφουμε κώδικα
 
 Συνίσταται το [VS Code](https://code.visualstudio.com/)
-μαζί με τις παρακάτω επεκτάσεις - extensions
+μαζί με τις παρακάτω βασικές επεκτάσεις - _extensions_
 
 - [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar): Επίσημη επέκταση Vue
-- [IntelliCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Αυτόματη συμπλήρωση κώδικα
-- [GitLense](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Βοηθητικό εργαλείο για ενέργειες σχετικά με το GIT
+
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint): Έλεγχος ποιότητας κώδικα
+
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): Μορφοποίηση κώδικα
+
+- [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig): Υποστήριξη αρχείου `.editorconfig`
+
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker): Ορθογραφικός έλεγχος για αγγλικά
+
 - [Greek - Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-greek): Ορθογραφικός έλεγχος για ελληνικά
+
+Πέρα από αυτές, υπάρχουν πολλές ακόμα, καθώς και ρυθμίσεις που κάνουν την προγραμματιστική εμπειρία στο vscode πολύ ευχάριστη. Δες περισσότερα [εδώ](/guide/utilities/vscode)
 
 ### Node.js
 
