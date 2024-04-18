@@ -132,14 +132,14 @@ export function registerPlugins(app) {
 
 4. Αλλάζουμε το `App.vue` να κάνει _render_ τον _router_
 
+<!-- prettier-ignore -->
 ```html
 <!-- ~/src/App.vue -->
 <template>
   <v-app>
     <v-main>
-      <HelloWorld /> // [!code --]
-
-      <router-view /> // [!code ++]
+      <HelloWorld /> <!-- [!code --] -->
+      <router-view /> <!-- [!code ++] -->
     </v-main>
 
     <AppFooter />
@@ -356,12 +356,12 @@ export const usePostsStore = defineStore("posts", () => {
 Μπες στο [localhost:3000/posts](http://localhost:3000/posts) για να δεις τις αλλαγές
 
 ::: info 🔍
-Μπορεί να δεις τον κώδικα λάθος μορφοποιημένο. Στο VSCode, η συντόμευση για τη μορφοποίηση - format - είναι `Ctrl`+`Shift`+`F`
+Μπορεί να δεις τον κώδικα λάθος μορφοποιημένο. Στο VSCode, η συντόμευση για τη μορφοποίηση - format - είναι `Alt`+`Shift`+`F`
 :::
 
 ## Axios
 
-Για να επικοινωνεί η εφαρμογή με _APIs (Application Programming Interface)_ , χρησιμοποιούμε τη βιβλιοθήκη [Axios](https://axios-http.com/)
+Για να επικοινωνεί η εφαρμογή με _APIs (Application Programming Interfaces)_ , χρησιμοποιούμε τη βιβλιοθήκη [Axios](https://axios-http.com/)
 
 ### Installation
 
@@ -371,9 +371,11 @@ pnpm add axios
 
 ### Configuration
 
-Για τον οδηγό, θα χρησιμοποιήσουμε το _API_ του [JSONPlaceholder](https://jsonplaceholder.typicode.com/) για να προσομοιώσουμε κλήσεις ανάκτησης, επεξεργασίας και διαγραφής post
+Για τον οδηγό, θα χρησιμοποιήσουμε το _API_ του [JSONPlaceholder](https://jsonplaceholder.typicode.com/) για να **προσομοιώσουμε** κλήσεις ανάκτησης, επεξεργασίας και διαγραφής post
 
-1. Στον _root_ φάκελο `~/`, δημιούργησε ένα αρχείο `.env`. Αυτό το αρχείο αποτελεί τις ρυθμίσεις του _περιβάλλοντος (development, production...)_, καθώς και στοιχεία που δεν θες να έχει πρόσβαση ο χρήστης, όπως _authentication tokens_. Για την ώρα, θα έχει το `VITE_BACKEND_URL` ως το _api url_ του JSONPlaceholder
+1. Στον _root_ φάκελο `~/`, δημιούργησε ένα αρχείο `.env`. Αυτό το αρχείο αποτελεί τις ρυθμίσεις του _περιβάλλοντος (development, production...)_, καθώς και στοιχεία που δεν θες να έχει πρόσβαση ο χρήστης, όπως _authentication tokens_.
+
+   Για την ώρα, θα έχει το _URL_ με το οποίο θα επικοινωνεί η εφαρμογή με το _BACKEND_. Θα θέσουμε ως `VITE_BACKEND_URL` το _api url_ του JSONPlaceholder
 
 ```bash
 # ~/.env
@@ -410,9 +412,9 @@ export function registerPlugins(app) {
 
 ### Ενημέρωση του `posts` store
 
-Προηγουμένως, τα post ήταν 2 συγκεκριμένα και "καρφωτά" στον κώδικα. Θα ενημερώσουμε το store να χρησιμοποιεί τις κλήσεις του JSONPlaceholder
+Προηγουμένως, τα post ήταν 2 συγκεκριμένα και "καρφωτά" στον κώδικα. Θα ενημερώσουμε το store να χρησιμοποιεί τις κλήσεις _API_ του JSONPlaceholder
 
-- Axios import και διαγραφή των προηγούμενων
+#### 1. Axios import και διαγραφή των προηγούμενων posts
 
 ```javascript {8}
 // ~/src/stores/posts.js
@@ -430,47 +432,62 @@ export const usePostsStore = defineStore("posts", () => {
   }
 ```
 
-#### 1. Υλοποίηση Fetch
+#### 2. Υλοποίηση Ανάκτησης - Fetch
+
+Για την ανάκτηση δεδομένων μέσω _API_, χρησιμοποιούμε την `axios.get()`
 
 ```javascript
 const posts = ref([]);
+
+// Actions
 
 // Βάζουμε async / await γιατί η api κλήση είναι ασύγχρονη
 const fetchPosts = async () => {
-  // Η axios κλήση θα επιστρέψει ένα response
-  // θέλουμε μόνο τα data
+  // Οι HTTPS κλήσεις, όπως η axios.get επιστρέφουν ένα response ή ένα error
+  // Τη διαχείριση σφαλμάτων θα τη δούμε αργότερα
+  // Από το response, θέλουμε μόνο τα data
   const { data } = await axios.get("/posts");
 
-  // Ενημέρωση του value του posts
+  // Ενημέρωση του value του posts ref με τα δεδομένα της κλήσης
   posts.value = data.slice(0, 5);
-
-  return;
 };
+
+// ...
 ```
 
-#### 2. Υλοποίηση Create
+#### 3. Υλοποίησης Δημιουργίας - Create
+
+Για την προσθήκη δεδομένων στη βάση, χρησιμοποιούμε την `axios.post()`
 
 ```javascript
 const posts = ref([]);
 
-// Το newPosts είναι αντικείμενο της μορφής
-// { id: 'string', title: 'string', body: 'string' }
+// ...
+
 const createPost = async (title) => {
-  // Ενημέρωση της βάσης δεδομένων με κλήση post
+  // Προσθήκη του post στη βάση δεδομένων με κλήση post
+  // Θα επιστραφεί ένα μοναδικό id που θα αντιπροσωπεύει το post
   const { id } = await axios.post("/posts", { title });
 
-  // Προσθήκη του post στα posts
+  // Προσθήκη του post στα δεδομένα του store
   posts.value.push({ id, title });
 };
+
+// ...
 ```
 
-#### 3. Υλοποίηση Update
+#### 4. Υλοποίηση Ενημέρωσης - Update
+
+Για την επεξεργασία δεδομένων στη βάση, χρησιμοποιούμε την `axios.put()`
 
 ```javascript
 const posts = ref([]);
 
+// ...
+
 const updatePost = async (post) => {
-  // Ενημέρωση της βάσης δεδομένων με κλήση post
+  // Ενημέρωση της βάσης δεδομένων με κλήση put,
+  // χρησιμοποιώντας το id του post σαν παράμετρο
   await axios.put(`/posts/${post.id}`, post);
 
   // Ενημέρωση του post στα posts
@@ -481,25 +498,40 @@ const updatePost = async (post) => {
     return p;
   });
 };
+
+// ...
 ```
 
-#### 4. Υλοποίηση Delete
+#### 5. Υλοποίηση Διαγραφής - Delete
+
+Για την διαγραφή δεδομένων στη βάση, χρησιμοποιούμε την `axios.delete()`
 
 ```javascript
 const posts = ref([]);
 
+// ...
+
 const deletePost = async (id) => {
-  // Ενημέρωση της βάσης δεδομένων με κλήση post
+  // Διαγραφή του post από τη βάση με κλήση delete 
+  // Αντίστοιχα με την επεξεργασία, βάζουμε το id σαν παράμετρο
   await axios.delete(`/posts/${id}`);
 
-  // Διαγραφή του post από τα posts
+  // Διαγραφή του post από τα posts του store
   posts.value = posts.value.filter((p) => p.id !== id);
 };
+
+// ...
 ```
+::: tip 💡
+Καθώς αλλάζουν πολλά σημεία του κώδικα, βεβαιώσου πως ακολουθάς σωστά τις οδηγίες. Αν δεις την [οθόνη της εφαρμογής](http://localhost:3000/posts) άδεια, άνοιξε την κονσόλα - `f12` και δες το μήνυμα λάθους για περισσότερες πληροφορίες
+:::
 
-### Ενημέρωση του `PostsPage.vue`
+### Ενημέρωση της σελίδας `PostsPage.vue`
 
-1. `fetchPosts` on `onMounted` _lifecycle hook_
+
+1. Καλούμε την ανάκτηση δεδομένων όταν αρχικοποιείται το component
+
+   Πιο συγκεκριμένα, καλούμε τη `fetchPosts()` μέσα στο  `onMounted` _lifecycle hook_
 
 ```html {5,10-12}
 <!-- ~/src/pages/PostsPage.vue -->
@@ -519,6 +551,10 @@ const deletePost = async (id) => {
 
 2. Προσθήκη πεδίου για δημιουργία post
 
+   Το _Vuetify_ έχει το `v-data-table` _component_ ως πεδίο εισαγωγής κειμένου
+
+   Για το κουμπί της υποβολής, Θα χρησιμοποιήσουμε το component `v-btn`
+
 ```html {5-16,23,32}
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
@@ -534,7 +570,7 @@ const deletePost = async (id) => {
   />
 
   <v-btn color="primary" @click="postsStore.createPost(newPostTitle)">
-    αποθηκευση
+    Υποβολη
   </v-btn>
 
   <!-- Λίστα Posts -->
@@ -555,7 +591,7 @@ const deletePost = async (id) => {
 </script>
 ```
 
-2. Προσθήκη πλαισίου διαλόγου για επεξεργασία post
+2. Προσθήκη αναδυόμενου πλαισίου για επεξεργασία post
 
 ```html {27-36,50-79,94-97}
 <!-- ~/src/pages/PostsPage.vue -->
@@ -607,7 +643,7 @@ const deletePost = async (id) => {
     </template>
   </v-card>
 
-  <!-- Πλαίσιο Διαλόγου Επεξεργασίας -->
+  <!-- Αναδυόμενο Πλαίσιο Επεξεργασίας -->
   <v-dialog v-model="editPost.id" width="auto">
     <v-card width="400" prepend-icon="mdi-pen" title="Επεξεργασία">
       <v-card-text>
