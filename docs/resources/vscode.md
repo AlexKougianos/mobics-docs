@@ -76,8 +76,32 @@
 
 Μπορείς να δεις το γραφικό περιβάλλον των ρυθμίσεων με τη συντόμευση `Ctrl` + `.`
 
-Υπάρχει και αντίστοιχο αρχείο `settings.json` που μπορείς να διαχειριστείς τις ρυθμίσεις σε μορφή _JSON_
-Για να το ανοίξεις, πάτα `Ctrl` + `Shift` + `p` και πληκτρολόγησε την εντολή `Preferences: Open User Settings (JSON)`
+Στο _VS Code_ υπάρχουν 2 περιβάλλοντα ρυθμίσεων: _User_ και _Workspace_
+
+Στο περιβάλλον `User` οι ρυθμίσεις που προσθέτεις θα ισχύουν σε κάθε φάκελο της συσκευής σου
+
+Στο περιβάλλον `Workspace` οι ρυθμίσεις θα ισχύουν μόνο στον φάκελο που είναι ανοιγμένο το VS Code
+
+Υπάρχουν αντίστοιχα αρχεία `settings.json` που μπορείς να διαχειριστείς τις ρυθμίσεις σε μορφή _JSON_
+
+Για να ανοίξεις τις ρυθμίσεις _User_ και _Workspace_, πάτα `Ctrl` + `Shift` + `p` και πληκτρολόγησε την εντολή `Preferences: Open User Settings (JSON)` ή `Preferences: Open Workspace Settings (JSON)` αντίστοιχα
+
+### Βασικές
+
+```JSON
+// User Settings
+{
+    // ...
+
+    // enable auto save
+    "files.autoSave": "afterDelay",
+
+    // Eslint settings
+    "eslint.validate": ["javascript", "vue"],
+}
+```
+
+### Προτεινόμενες
 
 Παρακάτω είναι οι προτεινόμενες ρυθμίσεις, μπορείς να προσθέσεις όσες θες στο τέλος του αρχείου
 
@@ -85,10 +109,6 @@
 // User Settings
 {
     // ...
-
-    // enable auto save and format on save
-    "files.autoSave": "afterDelay",
-    "editor.formatOnSave": true,
 
     // show whitespace - spaces and tabs
     "editor.renderWhitespace": "all",
@@ -119,9 +139,6 @@
     // Prettier settings
     "prettier.configPath": "prettier.config.mjs",
     "prettier.requireConfig": true
-
-    // Eslint settings
-    "eslint.validate": ["javascript", "vue"],
 
     // cSpell extension settings,
     "cSpell.language": "en,el",
