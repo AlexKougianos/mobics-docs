@@ -116,7 +116,15 @@
     "vue.autoInsert.dotValue": true,
     "vue.splitEditors.icon": true,
 
-    // cSpell ignore words,
+    // Prettier settings
+    "prettier.configPath": "prettier.config.mjs",
+    "prettier.requireConfig": true
+
+    // Eslint settings
+    "eslint.validate": ["javascript", "vue"],
+
+    // cSpell extension settings,
+    "cSpell.language": "en,el",
     "cSpell.userWords": [
         "esbenp",
         "axios",
@@ -140,6 +148,10 @@
         "Mintlify",
         "strikethrough",
         "autohide",
+        "unplugin",
+        "wght",
+        "Kael",
+        "fontface",
     ],
 
     // Better Comments custom colors
@@ -229,9 +241,10 @@
 
 ## Συμβουλές
 
-- Μπορείς να ανοίξεις φάκελο στο VSCode κατευθείαν από το τερματικό - _terminal_ - με την εντολή 
+- Μπορείς να ανοίξεις φάκελο στο VSCode κατευθείαν από το τερματικό - _terminal_ - με την εντολή
+
 ```bash
-code ./folder/path 
+code ./folder/path
 ```
 
 - Κάθε επέκταση που κατεβάζεις, προσθέτει φόρτο βάρους στο VSCode. Αν παρατηρείς πως αργεί, δες μήπως φταίει μια συγκεκριμένη επέκταση και απενεργοποίησέ τη
