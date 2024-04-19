@@ -25,6 +25,7 @@ pnpm create vuetify
 - Στην επιλογή _preset_, επιλέγεις `Default`
 - Στην επιλογή _typescript_, επιλέγεις `No`
 - Στην επιλογή _dependency installer_, επιλέγεις `pnpm`
+- Στην επιλογή _install_, επιλέγεις `Yes`
 
 ```javascript
 ? Project name: > project-name // the folder to generate your application
@@ -39,6 +40,7 @@ pnpm create vuetify
 >   pnpm
     bun
     none
+? Install Dependencies? ... No / > Yes
 ```
 
 Όταν τελειώσεις αυτή τη διαδικασία, δημιουργείται ο φάκελος με τον σκελετό μιας vue 3 εφαρμογής, που αποτελείται από _αρχεία ρυθμίσεων (config files)_ και τα αρχικά `app.vue` και `HelloWord.vue` Vue Components. Μπορείς να διαβάσεις περισσότερα, ανοίγοντας τα διάφορα `README.md` αρχεία
@@ -89,9 +91,15 @@ pnpm add vue-router@4
 ```html
 <!-- ~/src/pages/LandingPage.vue -->
 <template>
-  <h1>LandingPage</h1>
+  <v-container>
+    <h1>LandingPage</h1>
+  </v-container>
 </template>
 ```
+
+::: info 🔎
+Τα περιεχόμενα μιας σελίδας συνήθως εισάγονται σε ένα `v-container` component, το οποίο προσθέτει _padding_ στον x άξονα
+:::
 
 2. Φτιάχνουμε ένα _JavaScript_ αρχείο που θα αντιστοιχεί τα _path_ με τα αντίστοιχα Vue αρχεία. Φτιάξε έναν φάκελο `~/src/router` και μέσα ένα αρχείο `index.js` με τον παρακάτω κώδικα
 
@@ -162,7 +170,9 @@ export function registerPlugins(app) {
 ```html
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
-  <h1>Posts Page</h1>
+  <v-container>
+    <h1>Posts Page</h1>
+  </v-container>
 </template>
 ```
 
@@ -183,6 +193,25 @@ routes: [
   },
 ],
 ```
+
+Τέλος, πρόσθεσε ένα σύνδεσμο στην αρχική σελίδα, για να πηγαίνεις στη σελίδα `/posts`
+
+```HTML
+<!-- ~/src/pages/LandingPage.vue -->
+<template>
+  <v-container>
+    <h1>LandingPage</h1>
+
+    <router-link to="/posts">Go to Posts</router-link>  <!-- [!code ++] -->
+  </v-container>
+</template>
+```
+
+::: info 🔎
+Για σύνδεσμο σε σελίδα **εντός** της εφαρμογής, χρησιμοποιείς το `<router-link to="/...">`
+
+Για σελίδα **εκτός** της εφαρμογής, χρησιμοποιείς το σύνηθες `<a href="https://..." />` της HTML
+:::
 
 Τώρα, ανοίγοντας το [localhost:3000](http://localhost:3000) και [localhost:3000/posts](http://localhost:3000/posts) , θα δεις τις Landing και Posts σελίδες αντίστοιχα
 
@@ -279,10 +308,12 @@ export const usePostsStore = defineStore("posts", () => {
 
 1. Import το store στο _component_
 
-```html {6-10}
+```html {8-12}
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
-  <h1>Posts Page</h1>
+  <v-container>
+    <h1>Posts Page</h1>
+  </v-container>
 </template>
 
 <script setup>
@@ -294,20 +325,22 @@ export const usePostsStore = defineStore("posts", () => {
 
 2. Εμφάνισε τους τίτλους των posts χρησιμοποιώντας το [`v-card` component](https://vuetifyjs.com/en/components/cards/) του vuetify και το `v-for` _directive_ της Vue
 
-```html {5-13}
+```html {6-14}
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
-  <h1>Posts Page</h1>
+  <v-container>
+    <h1>Posts Page</h1>
 
-  <!-- Λίστα Posts -->
-  <v-card
-    v-for="post in postsStore.posts"
-    :key="post.id"
-    :title="post.title"
-    class="my-4"
-    width="500px"
-  >
-  </v-card>
+    <!-- Λίστα Posts -->
+    <v-card
+      v-for="post in postsStore.posts"
+      :key="post.id"
+      :title="post.title"
+      class="my-4"
+      width="500px"
+    >
+    </v-card>
+  </v-container>
 </template>
 
 <script setup>
@@ -319,31 +352,33 @@ export const usePostsStore = defineStore("posts", () => {
 
 3. Πρόσθεσε κουμπί διαγραφής δίπλα στον τίτλο
 
-```html {13-23}
+```html {14-24}
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
-  <h1>Posts Page</h1>
+  <v-container>
+    <h1>Posts Page</h1>
 
-  <!-- Λίστα Posts -->
-  <v-card
-    v-for="post in postsStore.posts"
-    :key="post.id"
-    :title="post.title"
-    class="my-4"
-    width="500px"
-  >
-    <template #append>
-      <!-- Κουμπί Διαγραφής -->
-      <v-btn
-        icon
-        size="small"
-        color="red"
-        @click="postsStore.deletePost(post.id)"
-      >
-        <v-icon icon="mdi-delete" />
-      </v-btn>
-    </template>
-  </v-card>
+    <!-- Λίστα Posts -->
+    <v-card
+      v-for="post in postsStore.posts"
+      :key="post.id"
+      :title="post.title"
+      class="my-4"
+      width="500px"
+    >
+      <template #append>
+        <!-- Κουμπί Διαγραφής -->
+        <v-btn
+          icon
+          size="small"
+          color="red"
+          @click="postsStore.deletePost(post.id)"
+        >
+          <v-icon icon="mdi-delete" />
+        </v-btn>
+      </template>
+    </v-card>
+  </v-container>
 </template>
 
 <script setup>
@@ -436,7 +471,7 @@ export const usePostsStore = defineStore("posts", () => {
 
 Για την ανάκτηση δεδομένων μέσω _API_, χρησιμοποιούμε την `axios.get()`
 
-```javascript
+```javascript {5-14}
 const posts = ref([]);
 
 // Actions
@@ -459,7 +494,7 @@ const fetchPosts = async () => {
 
 Για την προσθήκη δεδομένων στη βάση, χρησιμοποιούμε την `axios.post()`
 
-```javascript
+```javascript {5-12}
 const posts = ref([]);
 
 // ...
@@ -480,7 +515,7 @@ const createPost = async (title) => {
 
 Για την επεξεργασία δεδομένων στη βάση, χρησιμοποιούμε την `axios.put()`
 
-```javascript
+```javascript {5-17}
 const posts = ref([]);
 
 // ...
@@ -506,13 +541,13 @@ const updatePost = async (post) => {
 
 Για την διαγραφή δεδομένων στη βάση, χρησιμοποιούμε την `axios.delete()`
 
-```javascript
+```javascript {5-12}
 const posts = ref([]);
 
 // ...
 
 const deletePost = async (id) => {
-  // Διαγραφή του post από τη βάση με κλήση delete 
+  // Διαγραφή του post από τη βάση με κλήση delete
   // Αντίστοιχα με την επεξεργασία, βάζουμε το id σαν παράμετρο
   await axios.delete(`/posts/${id}`);
 
@@ -522,16 +557,16 @@ const deletePost = async (id) => {
 
 // ...
 ```
+
 ::: tip 💡
 Καθώς αλλάζουν πολλά σημεία του κώδικα, βεβαιώσου πως ακολουθάς σωστά τις οδηγίες. Αν δεις την [οθόνη της εφαρμογής](http://localhost:3000/posts) άδεια, άνοιξε την κονσόλα - `f12` και δες το μήνυμα λάθους για περισσότερες πληροφορίες
 :::
 
 ### Ενημέρωση της σελίδας `PostsPage.vue`
 
-
 1. Καλούμε την ανάκτηση δεδομένων όταν αρχικοποιείται το component
 
-   Πιο συγκεκριμένα, καλούμε τη `fetchPosts()` μέσα στο  `onMounted` _lifecycle hook_
+   Πιο συγκεκριμένα, καλούμε τη `fetchPosts()` μέσα στο `onMounted` _lifecycle hook_
 
 ```html {5,10-12}
 <!-- ~/src/pages/PostsPage.vue -->
@@ -551,30 +586,32 @@ const deletePost = async (id) => {
 
 2. Προσθήκη πεδίου για δημιουργία post
 
-   Το _Vuetify_ έχει το `v-data-table` _component_ ως πεδίο εισαγωγής κειμένου
+   Το _Vuetify_ έχει το `v-text-field` _component_ ως πεδίο εισαγωγής κειμένου
 
    Για το κουμπί της υποβολής, Θα χρησιμοποιήσουμε το component `v-btn`
 
-```html {5-16,23,32}
+```html {6-17,25,34}
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
-  <h1>Posts Page</h1>
+  <v-container>
+    <h1>Posts Page</h1>
 
-  <!-- Πεδίο Προσθήκης -->
-  <v-text-field
-    v-model="newPostTitle"
-    type="text"
-    placeholder="Προσθήκη Post"
-    class="mt-4"
-    clearable
-  />
+    <!-- Πεδίο Προσθήκης -->
+    <v-text-field
+      v-model="newPostTitle"
+      type="text"
+      placeholder="Προσθήκη Post"
+      class="mt-4"
+      clearable
+    />
 
-  <v-btn color="primary" @click="postsStore.createPost(newPostTitle)">
-    Υποβολη
-  </v-btn>
+    <v-btn color="primary" @click="postsStore.createPost(newPostTitle)">
+      Υποβολη
+    </v-btn>
 
-  <!-- Λίστα Posts -->
-  <v-card> ... </v-card>
+    <!-- Λίστα Posts -->
+    <v-card> ... </v-card>
+  </v-container>
 </template>
 
 <script setup>
@@ -593,55 +630,57 @@ const deletePost = async (id) => {
 
 2. Προσθήκη αναδυόμενου πλαισίου για επεξεργασία post
 
-```html {27-36,50-79,94-97}
+```html {28-37,52-81,96-99}
 <!-- ~/src/pages/PostsPage.vue -->
 <template>
-  <h1>Posts Page</h1>
+  <v-container>
+    <h1>Posts Page</h1>
 
-  <!-- Πεδίο Προσθήκης -->
-  <v-text-field
-    v-model="newPost"
-    type="text"
-    placeholder="Προσθήκη Post"
-    class="mt-4"
-    clearable
-  />
+    <!-- Πεδίο Προσθήκης -->
+    <v-text-field
+      v-model="newPost"
+      type="text"
+      placeholder="Προσθήκη Post"
+      class="mt-4"
+      clearable
+    />
 
-  <v-btn color="primary" @click="postsStore.createPost(newPost)">
-    αποθηκευση
-  </v-btn>
+    <v-btn color="primary" @click="postsStore.createPost(newPost)">
+      αποθηκευση
+    </v-btn>
 
-  <!-- Λίστα Posts -->
-  <v-card
-    v-for="post in postsStore.posts"
-    :key="post.id"
-    :title="post.title"
-    class="my-4"
-    width="300px"
-  >
-    <template #append>
-      <!-- Κουμπί Επεξεργασίας -->
-      <v-btn
-        icon
-        color="grey-lighten-3"
-        class="mr-2"
-        size="small"
-        @click="editPost = { ...post }"
-      >
-        <v-icon icon="mdi-pen" />
-      </v-btn>
+    <!-- Λίστα Posts -->
+    <v-card
+      v-for="post in postsStore.posts"
+      :key="post.id"
+      :title="post.title"
+      class="my-4"
+      width="300px"
+    >
+      <template #append>
+        <!-- Κουμπί Επεξεργασίας -->
+        <v-btn
+          icon
+          color="grey-lighten-3"
+          class="mr-2"
+          size="small"
+          @click="editPost = { ...post }"
+        >
+          <v-icon icon="mdi-pen" />
+        </v-btn>
 
-      <!-- Κουμπί Διαγραφής -->
-      <v-btn
-        icon
-        size="small"
-        color="red"
-        @click="postsStore.deletePost(post.id)"
-      >
-        <v-icon icon="mdi-delete" />
-      </v-btn>
-    </template>
-  </v-card>
+        <!-- Κουμπί Διαγραφής -->
+        <v-btn
+          icon
+          size="small"
+          color="red"
+          @click="postsStore.deletePost(post.id)"
+        >
+          <v-icon icon="mdi-delete" />
+        </v-btn>
+      </template>
+    </v-card>
+  </v-container>
 
   <!-- Αναδυόμενο Πλαίσιο Επεξεργασίας -->
   <v-dialog v-model="editPost.id" width="auto">
@@ -710,17 +749,18 @@ pnpm add -D -E prettier
 
 ### Configuration
 
-Πρόσθεσε ένα αρχείο `.prettierrc.cjs` στον root φάκελο `~/`
+Πρόσθεσε ένα αρχείο `prettier.config.mjs` στον root φάκελο `~/`
 
 ```javascript
-// ~/.prettierrc.cjs
-module.exports = {
+// ~/prettier.config.mjs
+export default {
   $schema: "https://json.schemastore.org/prettierrc",
   semi: false,
   tabWidth: 2,
   singleQuote: true,
   printWidth: 100,
   trailingComma: "none",
+  singleAttributePerLine: true
 };
 ```
 
@@ -728,13 +768,15 @@ module.exports = {
 Δες [εδώ](https://prettier.io/docs/en/options) τη λίστα διαθέσιμων κανόνων - prettier options
 :::
 
-Μπορείς να μορφοποιήσεις όλα τα αρχεία του φακέλου `/src` με μια εντολή
+Όπως αναφέρθηκε πριν, στο _VS Code_ μπορείς να μορφοποιήσεις το αρχείο που βρίσκεσαι με τη συντόμευση `Alt` + `Shift` + `F`
+
+Για να μορφοποιήσεις **όλα** τα αρχεία του φακέλου `/src`, τρέξε την εντολή
 
 ```bash
 pnpm exec prettier --write src/
 ```
 
-Πρόσθεσε την μακροεντολή - script - στα `scripts` του `package.json` για να την έχεις διαθέσιμη ως `pnpm format`
+Έπειτα, πρόσθεσε την μακροεντολή - script - στα `scripts` του `package.json` για να την έχεις διαθέσιμη ως `pnpm format`
 
 ```json
 "scripts": {
@@ -754,24 +796,27 @@ pnpm exec prettier --write src/
 ### Installation
 
 ```bash
-pnpm add -D eslint @rushstack/eslint-patch
+pnpm add -D eslint
 ```
 
 ### Configuration
 
-Πρόσθεσε ένα αρχείο `.eslintrc.cjs` στον root φάκελο `~/`
+Πρόσθεσε ένα αρχείο `eslint.config.mjs` στον root φάκελο `~/`
 
 ```javascript
-/* eslint-env node */
-require("@rushstack/eslint-patch/modern-module-resolution");
+// ~/eslint.config.mjs`
+import js from "@eslint/js";
 
-module.exports = {
-  root: true,
-  extends: ["eslint:recommended"],
-  parserOptions: {
-    ecmaVersion: "latest",
+export default [
+  js.configs.recommended,
+  {
+    files: ["src/**/*.{js,vue}"],
+    ignores: ["**/*.gitignore"],
+    languageOptions: {
+      ecmaVersion: "latest",
+    },
   },
-};
+];
 ```
 
 Όπως με την μακροεντολή `format` στο _prettier_, θα προσθέσουμε μακροεντολή `lint` στο `scripts` του `package.json`
@@ -780,7 +825,7 @@ module.exports = {
 "scripts": {
   // ...
   "format": "prettier --write src/",
-  "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore" // [!code ++]
+  "lint": "eslint --fix" // [!code ++]
 },
 ```
 
@@ -790,42 +835,45 @@ module.exports = {
 pnpm lint
 ```
 
+Εκτελώντας τη, θα παρατηρήσεις κάποια μηνύματα λάθους στην κονσόλα. Αυτό συμβαίνει διότι δεν είναι διαμορφωμένο να λειτουργεί με `.vue` κώδικα.
+
+Για τον λόγο αυτό, χρειάζεται να προσθέσουμε πακέτα - plugins
+
 ### Plugins
 
-Στο _eslint_ μπορείς να προσθέσεις πρόσθετα πακέτα - _plugins_
+**[`eslint-plugin-vue`](https://eslint.vuejs.org/)**
 
-#### `eslint-plugin-vue`
-
-Επίσημοι κανόνες από το [_vue plugin_](https://eslint.vuejs.org/)
+Επίσημοι κανόνες για τη _Vue_
 
 ```bash
 pnpm add -D eslint-plugin-vue
 ```
 
-Και το προσθέτουμε στο `.eslint.cjs`
+Και το προσθέτουμε στο `eslint.config.mjs`
 
 ```javascript
-// ~/.eslint.cjs
-/* eslint-env node */
-require("@rushstack/eslint-patch/modern-module-resolution");
+// ~/eslint.config.mjs
+import js from "@eslint/js";
+import pluginVue from "eslint-plugin-vue"; // [!code ++]
 
-module.exports = {
-  root: true,
-  extends: [
-    "plugin:vue/vue3-recommended", // [!code ++]
-    "eslint:recommended",
-  ],
-  parserOptions: {
-    ecmaVersion: "latest",
+export default [
+  js.configs.recommended,
+  ...pluginVue.configs["flat/recommended"], // [!code ++]
+  {
+    files: ["src/**/*.{js,vue}"],
+    ignores: ["**/*.gitignore"],
+    languageOptions: {
+      ecmaVersion: "latest",
+    },
   },
-};
+];
 ```
 
 ::: info 🔍
 Δες [εδώ](https://eslint.vuejs.org/rules/) τη λίστα των κανόνων του `eslint-plugin-vue`
 :::
 
-#### `eslint-config-prettier`
+**[`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier)**
 
 Το eslint προσφέρει επίσης κανόνες μορφοποίησης - όπως το prettier - αλλά δεν το προτιμάμε, οπότε πρέπει να κατεβάσεις ένα πακέτο για να μην υπάρχουν συγκρούσεις - conflicts
 
@@ -836,24 +884,25 @@ pnpm add -D eslint-config-prettier
 Και το προσθέτουμε στο `.eslint.cjs`
 
 ```javascript
-// ~/.eslint.cjs
-/* eslint-env node */
-require("@rushstack/eslint-patch/modern-module-resolution");
+import js from "@eslint/js";
+import pluginVue from "eslint-plugin-vue";
+import eslintConfigPrettier from "eslint-config-prettier"; // [!code ++]
 
-module.exports = {
-  root: true,
-  extends: [
-    "plugin:vue/vue3-recommended",
-    "eslint:recommended",
-    "@vue/eslint-config-prettier/skip-formatting", // [!code ++]
-  ],
-  parserOptions: {
-    ecmaVersion: "latest",
+export default [
+  js.configs.recommended,
+  eslintConfigPrettier, // [!code ++]
+  ...pluginVue.configs["flat/recommended"],
+  {
+    files: ["src/**/*.{js,vue}"],
+    ignores: ["**/*.gitignore"],
+    languageOptions: {
+      ecmaVersion: "latest",
+    },
   },
-};
+];
 ```
 
-#### `vite-plugin-eslint`
+**[`vite-plugin-eslint`](https://www.npmjs.com/package/vite-plugin-eslint)**
 
 Για να εμφανίζονται τα μηνύματα του eslint κατευθείαν στην οθόνη της εφαρμογής
 
@@ -941,7 +990,7 @@ git commit -m "first commit"
 
 Φτάνοντας στο τέλος του οδηγού, να πούμε πως υπάρχει ένα έτοιμο template με όλα τα προηγούμενα βήματα ανεβασμένο στο παρακάτω GitLab repository - εκτός της δημοσίευσης στο gitlab και το deployment, καθώς για κάθε project θα είναι διαφορετικά
 
-[https://github.com/AlexKougianos/vue3-vuetify-base-template](https://github.com/AlexKougianos/vue3-vuetify-base-template)
+[https://github.com/AlexKougianos/vue3-vuetify-production-starter](https://github.com/AlexKougianos/vue3-vuetify-production-starter)
 
 Μπορείς να χρησιμοποιήσεις το template ακολουθώντας τις οδηγίες στο `README`
 
