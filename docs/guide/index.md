@@ -13,7 +13,7 @@ outline: [2, 3]
 Για αρχή, χρειαζόμαστε ένα εργαλείο για να γράφουμε κώδικα
 
 Συνίσταται το [VS Code](https://code.visualstudio.com/)
-μαζί με τις παρακάτω βασικές επεκτάσεις - _extensions_
+μαζί με τις παρακάτω **βασικές επεκτάσεις** - _extensions_
 
 - [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar): Επίσημη επέκταση Vue
 
@@ -27,7 +27,22 @@ outline: [2, 3]
 
 - [Greek - Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-greek): Ορθογραφικός έλεγχος για ελληνικά
 
-Πέρα από αυτές, υπάρχουν πολλές ακόμα, καθώς και ρυθμίσεις που κάνουν την προγραμματιστική εμπειρία στο vscode πολύ ευχάριστη. Δες περισσότερα [εδώ](/resources/vscode)
+Και τις **βασικές ρυθμίσεις** - _settings_
+
+```JSON
+// User Settings
+{
+    // ...
+
+    // enable auto save
+    "files.autoSave": "afterDelay",
+
+    // Eslint settings
+    "eslint.validate": ["javascript", "vue"],
+}
+```
+
+Πέρα από αυτές, υπάρχουν πολλές ακόμα επεκτάσεις και ρυθμίσεις που κάνουν την προγραμματιστική εμπειρία στο vscode πολύ ευχάριστη. Δες περισσότερα [εδώ](/resources/vscode)
 
 ### Node.js
 
