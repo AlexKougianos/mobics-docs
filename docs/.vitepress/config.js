@@ -73,9 +73,7 @@ export default {
         {
           text: "Εργαλεία",
           collapsed: false,
-          items: [
-            { text: "VSCode", link: "/resources/vscode" },
-          ],
+          items: [{ text: "VSCode", link: "/resources/vscode" }],
         },
         // {
         //   text: "Βιβλιοθήκες",
@@ -93,4 +91,5 @@ export default {
     },
   },
   ignoreDeadLinks: true,
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
 };
