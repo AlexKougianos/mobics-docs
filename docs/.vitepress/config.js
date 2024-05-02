@@ -2,9 +2,22 @@ export default {
   title: "Mobics Docs",
   themeConfig: {
     nav: [
-      { text: "Οδηγός Web", link: "/guide/", activeMatch: "/guide/" },
+      {
+        text: "Οδηγοί",
+        activeMatch: "/guide/",
+        items: [
+          {
+            text: "Vuetify",
+            link: "/guide/",
+          },
+        ],
+      },
       { text: "Εκπαίδευση", link: "/training/", activeMatch: "/training/" },
-      { text: "Πόροι Αναφοράς", link: "/resources/", activeMatch: "/resources/" },
+      {
+        text: "Πόροι Αναφοράς",
+        link: "/resources/",
+        activeMatch: "/resources/",
+      },
     ],
     sidebar: {
       "/guide/": [
@@ -62,10 +75,6 @@ export default {
           collapsed: false,
           items: [
             { text: "VSCode", link: "/resources/vscode" },
-            // { text: "Vue Dev Tools", link: "/resources/vueDevTools" },
-            // { text: "Loom", link: "/resources/loom" },
-            // { text: "Notion", link: "/resources/notion" },
-            // { text: "Click Up", link: "/resources/clickUp" },
           ],
         },
         // {
@@ -83,5 +92,5 @@ export default {
       provider: "local",
     },
   },
-  ignoreDeadLinks: true
+  ignoreDeadLinks: true,
 };

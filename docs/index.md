@@ -6,7 +6,7 @@ hero:
   tagline: "Οδηγοί, Εκπαίδευση, Εργαλεία και άλλα για ανάπτυξη εφαρμογών σε Vue 3"
   actions:
     - theme: brand
-      text: Οδηγός Web
+      text: Νέα Εφαρμογή Vuetify
       link: /guide/
     - theme: alt
       text: Εκπαίδευση
