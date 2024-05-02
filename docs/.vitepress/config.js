@@ -91,5 +91,5 @@ export default {
     },
   },
   ignoreDeadLinks: true,
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  appearance: "dark",
 };
