@@ -11,4 +11,7 @@ hero:
     - theme: alt
       text: Εκπαίδευση
       link: /training/
+    - theme: alt
+      text: Πόροι Αναφοράς
+      link: /resources/
 ---
